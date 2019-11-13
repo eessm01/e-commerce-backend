@@ -19,6 +19,8 @@ npm run start
 https://e-moms-api.now.sh/api/products (GET) - Obtener todos los productos
 https://e-moms-api.now.sh/api/products/<id> (GET) - Obtener producto por id
 https://e-moms-api.now.sh/api/products/?categories=ropa (GET) - Obtener producto por categoria
+https://e-moms-api.now.sh/api/products/<id> (GET) - Obtener producto por id
+https://e-moms-api.now.sh/api/productsbystore/<id_store> (GET) - obtener productos por store
 
 https://e-moms-api.now.sh/api/products (POST) - crear producto
 https://e-moms-api.now.sh/api/products/<id> (PUT) - actualizar producto
