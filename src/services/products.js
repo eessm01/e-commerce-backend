@@ -9,8 +9,12 @@ class ProductService {
 
   async getProducts({ categories }) {
     const query = categories && { categories: { $in : [categories] }};
-    console.log('query', query);
     const products = await this.mongoDB.getAll(this.collection, query);
+    return products || [];
+  }
+
+  async getProductsByStore({ storeId }) {
+    const products = await this.mongoDB.getAll(this.collection, storeId);
     return products || [];
   }
 
