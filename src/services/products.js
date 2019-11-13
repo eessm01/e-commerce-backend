@@ -13,8 +13,10 @@ class ProductService {
     return products || [];
   }
 
-  async getProductsByStore({ storeId }) {
-    const products = await this.mongoDB.getAll(this.collection, storeId);
+  async getProductsByStore({ id_store }) {
+    const query = id_store && { id_store: { $in : [id_store] }};
+  
+    const products = await this.mongoDB.getAll(this.collection, query);
     return products || [];
   }
 

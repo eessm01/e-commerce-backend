@@ -16,11 +16,12 @@ npm run start
 
 ### Rutas para probar desde postman
 
-http://localhost:3001/api/products (GET)
+https://e-moms-api.now.sh/api/products (GET) - Obtener todos los productos
+https://e-moms-api.now.sh/api/products/<id> (GET) - Obtener producto por id
+https://e-moms-api.now.sh/api/products/?categories=ropa (GET) - Obtener producto por categoria
 
-http://localhost:3001/api/products/?categories=ropa (GET)
+https://e-moms-api.now.sh/api/products (POST) - crear producto
+https://e-moms-api.now.sh/api/products/<id> (PUT) - actualizar producto
+https://e-moms-api.now.sh/api/products/<id> (DELETE) - eliminar producto
 
-http://localhost:3001/api/create (POST)
-
-http://localhost:3001/api/delete/<id> (DELETE)
   

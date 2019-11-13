@@ -18,7 +18,7 @@ const platziStore = app => {
   router.get("/products", async (req, res, next) => {
     try {
       const { categories } = req.query;
-
+      
       const storeProducts = await productService.getProducts({ categories });
       res.status(200).json({
         data: storeProducts,
@@ -46,6 +46,20 @@ const platziStore = app => {
       }
     }
   );
+
+  router.get("/productsbystore/:id_store", async (req, res, next) => {
+    try {
+      const { id_store } = req.params;
+      
+      const storeProducts = await productService.getProductsByStore({ id_store });
+      res.status(200).json({
+        data: storeProducts,
+        message: "products listed"
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  });
 
   // crear producto
   router.post(
