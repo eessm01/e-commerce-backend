@@ -2,12 +2,8 @@ const express = require('express');
 const app = express();
 
 const { config } = require('./config');
-const platziStore = require('./routes/products')
-
-app.get('/', (req, res) => {
-  let userInfo = req.header("user-agent");
-  res.send(`UserInfo: ${userInfo}`);
-});
+const eMomsProducts = require('./routes/products');
+const eMomsStores = require('./routes/stores');
 
 const { logErrors, wrapErrors, errorHandler } = require('./utils/middleware/errorHandlers');
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
@@ -16,7 +12,8 @@ const notFoundHandler = require('./utils/middleware/notFoundHandler');
 app.use(express.json());
 
 // routes
-platziStore(app);
+eMomsProducts(app);
+eMomsStores(app);
 
 // always go to the end
 app.use(logErrors);

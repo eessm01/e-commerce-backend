@@ -9,6 +9,8 @@ const productQuantitySchema = joi.number();
 const productCategoriesSchema = joi.array().items(joi.string().max(30));
 const productIdStore = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 const productStoreNameSchema = joi.string().max(50);
+const productColorSchema = joi.string().max(50);
+const productTallaSchema = joi.string().max(50);
 
 const createProductSchema = {
   title: productTitleSchema.required(),
@@ -19,6 +21,8 @@ const createProductSchema = {
   categories: productCategoriesSchema.required(), 
   id_store: productIdStore.required(),
   store_name: productStoreNameSchema.required(),
+  color: productColorSchema,
+  talla: productTallaSchema
 };
 
 const updateProductSchema = {
@@ -30,6 +34,8 @@ const updateProductSchema = {
   categories: productCategoriesSchema, 
   id_store: productIdStore,
   store_name: productStoreNameSchema,
+  color: productColorSchema,
+  talla: productTallaSchema
 };
 
 

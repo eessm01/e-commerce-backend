@@ -9,7 +9,7 @@ const {
   updateProductSchema
 } = require('../utils/schemas/products');
 
-const platziStore = app => {
+const eMomsProducts = app => {
   const router = express.Router();
   app.use("/api/", router);
 
@@ -19,13 +19,13 @@ const platziStore = app => {
     try {
       const { categories } = req.query;
       
-      const storeProducts = await productService.getProducts({ categories });
+      const products = await productService.getProducts({ categories });
       res.status(200).json({
-        data: storeProducts,
+        data: products,
         message: "products listed"
       });
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   });
 
@@ -42,22 +42,22 @@ const platziStore = app => {
           message: "product retrieved"
         });
       } catch (err) {
-        console.log("error", err);
+        next(err);
       }
     }
   );
 
-  router.get("/productsbystore/:id_store", async (req, res, next) => {
-    try {
-      const { id_store } = req.params;
-      
-      const storeProducts = await productService.getProductsByStore({ id_store });
+  router.get("/productsbystore/:storeId", async (req, res, next) => {
+    const { storeId: id_store } = req.params;
+   
+    try {      
+      const products = await productService.getProductsByStore({ id_store });
       res.status(200).json({
-        data: storeProducts,
+        data: products,
         message: "products listed"
       });
     } catch (err) {
-      console.log(err);
+      next(err);
     }
   });
 
@@ -76,7 +76,7 @@ const platziStore = app => {
           message: "product created"
         });
       } catch (err) {
-        console.log("error", err);
+        next(err);
       }
     }
   );
@@ -100,7 +100,7 @@ const platziStore = app => {
           message: "product updated"
         });
       } catch (err) {
-        console.log("error:", err);
+        next(err);
       }
     }
   );
@@ -121,14 +121,11 @@ const platziStore = app => {
           message: "deleted product"
         });
       } catch (err) {
-        console.log("error:", err);
+        next(err);
       }
     }
   );
 
-  router.get("*", (req, res) => {
-    res.status(404).send("Error 404");
-  });
 };
 
-module.exports = platziStore;
+module.exports = eMomsProducts;
