@@ -65,7 +65,7 @@ const eMomsProducts = app => {
   router.post(
     "/products",
     validationHandler(joi.object(createProductSchema)),
-    async function(req, res, next) {
+    async (req, res, next) => {
       const { body: product } = req;
       try {
         const createdProductId = await productService.createProduct({
@@ -86,7 +86,7 @@ const eMomsProducts = app => {
     "/products/:productId",
     validationHandler(joi.object({ productId: productIdSchema }), 'params'),
     validationHandler(joi.object(updateProductSchema)),
-    async function(req, res, next) {
+    async (req, res, next) => {
       const { productId } = req.params;
       const { body: product } = req;
 
@@ -109,7 +109,7 @@ const eMomsProducts = app => {
   router.delete(
     "/products/:productId",
     validationHandler(joi.object({ productId: productIdSchema }), "params"),
-    async function(req, res, next) {
+    async (req, res, next) => {
       const { productId } = req.params;
 
       try {

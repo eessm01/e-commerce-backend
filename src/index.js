@@ -4,6 +4,7 @@ const app = express();
 const { config } = require('./config');
 const eMomsProducts = require('./routes/products');
 const eMomsStores = require('./routes/stores');
+const shoppinCart = require('./routes/products');
 
 const { logErrors, wrapErrors, errorHandler } = require('./utils/middleware/errorHandlers');
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
@@ -14,6 +15,7 @@ app.use(express.json());
 // routes
 eMomsProducts(app);
 eMomsStores(app);
+shoppinCart(app);
 
 // always go to the end
 app.use(logErrors);
