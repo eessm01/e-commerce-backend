@@ -9,7 +9,7 @@ const {
   updateProductSchema
 } = require('../utils/schemas/products');
 
-const eMomsProducts = app => {
+const eMomsProductsApi = app => {
   const router = express.Router();
   app.use("/api/", router);
 
@@ -128,4 +128,4 @@ const eMomsProducts = app => {
 
 };
 
-module.exports = eMomsProducts;
+module.exports = eMomsProductsApi;

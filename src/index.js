@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 
 const { config } = require('./config');
-const eMomsProducts = require('./routes/products');
-const eMomsStores = require('./routes/stores');
-const shoppinCart = require('./routes/products');
+
+const eMomsProductsApi = require('./routes/products');
+const eMomsStoresApi = require('./routes/stores');
+const shoppinCartApi = require('./routes/shoppingCart');
+const authApi = require('./routes/auth');
 
 const { logErrors, wrapErrors, errorHandler } = require('./utils/middleware/errorHandlers');
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
@@ -12,10 +14,15 @@ const notFoundHandler = require('./utils/middleware/notFoundHandler');
 // middleware body parser
 app.use(express.json());
 
+// middleware - Enable All CORS Requests
+app.use(cors())
+
+
 // routes
-eMomsProducts(app);
-eMomsStores(app);
-shoppinCart(app);
+authApi(app);
+eMomsProductsApi(app);
+eMomsStoresApi(app);
+shoppinCartApi(app);
 
 // always go to the end
 app.use(logErrors);

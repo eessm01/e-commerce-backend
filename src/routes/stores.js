@@ -10,7 +10,7 @@ const  {
 } = require('../utils/schemas/stores');
 
 
-const eMomsStores = app => {
+const eMomsStoresApi = app => {
   const router = express.Router();
   app.use("/api/", router);
 
@@ -53,7 +53,7 @@ const eMomsStores = app => {
   router.post(
     '/stores',
     validationHandler(joi.object(createStoreSchema)),
-    async function(req, res, next) {
+    async (req, res, next) => {
       const { body: store } = req;
       try {
         const createdStoreId = await storeService.createStore({ store });
@@ -71,7 +71,7 @@ const eMomsStores = app => {
   router.put(
     '/stores/:storeId',
     validationHandler(joi.object(updateStoreSchema)),
-    async function(req, res, next) {
+    async (req, res, next) => {
       const { storeId } = req.params;
       const { body: store } = req;
       try {
@@ -90,7 +90,7 @@ const eMomsStores = app => {
     router.delete(
       '/stores/:storeId',
       validationHandler(joi.object({ storeId: storeIdSchema }), 'params'),
-      async function(req, res, next) {
+      async (req, res, next) => {
         const { storeId } = req.params;
 
         try {
@@ -106,4 +106,4 @@ const eMomsStores = app => {
   
 }
 
-module.exports = eMomsStores;
+module.exports = eMomsStoresApi;
