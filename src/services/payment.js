@@ -1,10 +1,9 @@
 const stripe = require("stripe")("sk_test_1j0xTN9Vspl6ididuJcDlEIj00RwfaNUgz");
-const MongoLib = require("../lib/mongo");
 
 class PaymentService {
   constructor() {
     this.collection = "payments";
-    this.mongoDB = new MongoLib();
+    this.mongoDB = null
   }
   /**
    * Crea la intención de un pago
