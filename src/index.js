@@ -1,29 +1,34 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
 
-const { config } = require('./config');
+const { config } = require("./config");
 
-const eMomsProductsApi = require('./routes/products');
-const eMomsStoresApi = require('./routes/stores');
-const shoppinCartApi = require('./routes/shoppingCart');
-const authApi = require('./routes/auth');
+const eMomsProductsApi = require("./routes/products");
+const eMomsStoresApi = require("./routes/stores");
+const shoppinCartApi = require("./routes/shoppingCart");
+const authApi = require("./routes/auth");
+const paymentsApi = require("./routes/payments");
 
-const { logErrors, wrapErrors, errorHandler } = require('./utils/middleware/errorHandlers');
-const notFoundHandler = require('./utils/middleware/notFoundHandler');
+const {
+  logErrors,
+  wrapErrors,
+  errorHandler
+} = require("./utils/middleware/errorHandlers");
+const notFoundHandler = require("./utils/middleware/notFoundHandler");
 
 // middleware body parser
 app.use(express.json());
 
 // middleware - Enable All CORS Requests
-app.use(cors())
-
+app.use(cors());
 
 // routes
 authApi(app);
 eMomsProductsApi(app);
 eMomsStoresApi(app);
 shoppinCartApi(app);
+paymentsApi(app);
 
 // always go to the end
 app.use(logErrors);
